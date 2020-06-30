@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="mangasModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="dessinateur">
+    <Key>
+      <PropertyRef Name="id_dessinateur" />
+    </Key>
+    <Property Name="id_dessinateur" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nom_dessinateur" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="prenom_dessinateur" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="genre">
+    <Key>
+      <PropertyRef Name="id_genre" />
+    </Key>
+    <Property Name="id_genre" Type="int" Nullable="false" />
+    <Property Name="lib_genre" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="manga">
+    <Key>
+      <PropertyRef Name="id_manga" />
+    </Key>
+    <Property Name="id_manga" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_dessinateur" Type="int" Nullable="false" />
+    <Property Name="id_scenariste" Type="int" Nullable="false" />
+    <Property Name="prix" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="titre" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="dateParution" Type="date" Nullable="false" />
+    <Property Name="couverture" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="id_genre" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="scenariste">
+    <Key>
+      <PropertyRef Name="id_scenariste" />
+    </Key>
+    <Property Name="id_scenariste" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nom_scenariste" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="prenom_scenariste" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="fk_manga_dessinateur">
+    <End Role="dessinateur" Type="Self.dessinateur" Multiplicity="1" />
+    <End Role="manga" Type="Self.manga" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dessinateur">
+        <PropertyRef Name="id_dessinateur" />
+      </Principal>
+      <Dependent Role="manga">
+        <PropertyRef Name="id_dessinateur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_manga_genre">
+    <End Role="genre" Type="Self.genre" Multiplicity="1" />
+    <End Role="manga" Type="Self.manga" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="genre">
+        <PropertyRef Name="id_genre" />
+      </Principal>
+      <Dependent Role="manga">
+        <PropertyRef Name="id_genre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_manga_scenariste">
+    <End Role="scenariste" Type="Self.scenariste" Multiplicity="1" />
+    <End Role="manga" Type="Self.manga" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="scenariste">
+        <PropertyRef Name="id_scenariste" />
+      </Principal>
+      <Dependent Role="manga">
+        <PropertyRef Name="id_scenariste" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="mangasModelStoreContainer">
+    <EntitySet Name="dessinateur" EntityType="Self.dessinateur" Schema="mangas" store:Type="Tables" />
+    <EntitySet Name="genre" EntityType="Self.genre" Schema="mangas" store:Type="Tables" />
+    <EntitySet Name="manga" EntityType="Self.manga" Schema="mangas" store:Type="Tables" />
+    <EntitySet Name="scenariste" EntityType="Self.scenariste" Schema="mangas" store:Type="Tables" />
+    <AssociationSet Name="fk_manga_dessinateur" Association="Self.fk_manga_dessinateur">
+      <End Role="dessinateur" EntitySet="dessinateur" />
+      <End Role="manga" EntitySet="manga" />
+    </AssociationSet>
+    <AssociationSet Name="fk_manga_genre" Association="Self.fk_manga_genre">
+      <End Role="genre" EntitySet="genre" />
+      <End Role="manga" EntitySet="manga" />
+    </AssociationSet>
+    <AssociationSet Name="fk_manga_scenariste" Association="Self.fk_manga_scenariste">
+      <End Role="scenariste" EntitySet="scenariste" />
+      <End Role="manga" EntitySet="manga" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

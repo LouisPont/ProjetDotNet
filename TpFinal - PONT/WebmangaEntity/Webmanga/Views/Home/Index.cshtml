@@ -1,0 +1,44 @@
+﻿
+@{  ViewBag.Title = "Connexion";
+    Layout = "~/Views/Shared/_LayoutManga.cshtml";
+}
+
+
+    @Html.AntiForgeryToken()
+
+@using (Html.BeginForm("Controle", "Connexion",
+                        new { ReturnUrl = ViewBag.ReturnUrl },
+                        FormMethod.Post, new { @class = "login-form" }))
+{
+    <div class="form-horizontal">
+        <h1>Connexion</h1>
+        <p class="text-info">L'identifiant est au nom d'un utilisateur</p>
+        <hr />
+      
+        <div class="form-group">
+            <label class="control-label col-md-2" for="login">Identifiant</label>
+            <div class="col-md-6">
+                <input type="text" id="login" name="login" class="form-control text-box single-line " />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2" for="pwd">Mot de Passe</label>
+            <div class="col-md-10">
+                <input type="password" id="pwd" name="pwd" class="form-control text-box single-line " />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offser-2 col-md-2">
+                <input type="submit" value="Se Connecter" class="btn btn-default btn-success" />
+            </div>
+            <div class="col-md-2 col-sm-2">
+                @Html.ActionLink("Retourner à l'accueil", "Index", "Home", null, new { @class = "btn btn-default btn-primary" })
+            </div>
+            <div class="col-md-2 col-sm-2">
+                @Html.ActionLink("S'inscrire", "NouvUtil", "Home", null, new { @class = "btn btn-default btn-primary" })
+            </div>
+        </div>
+     </div>
+}
+
+

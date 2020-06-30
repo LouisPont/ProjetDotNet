@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "ajouterDessinateur";
+    Layout = "~/Views/Shared/_LayoutManga.cshtml";
+}
+
+
+
+@using (Html.BeginForm("addDessinateur", "Nouveau",
+                        new { ReturnUrl = ViewBag.ReturnUrl },
+                        FormMethod.Post, new { @class = "login-form" }))
+{
+    <div class="form-horizontal">
+        <h1>Ajouter un Mangaka</h1>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Nom">Nom</label>
+            <div class="col-md-10">
+                <input type="text" id="Nom" name="Nom" class="form-control text-box single-line " />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Prenom">Prenom</label>
+            <div class="col-md-10">
+                <input type="text" id="Prenom" name="Prenom" class="form-control text-box single-line " />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offser-2 col-md-2">
+                <input type="submit" value="Ajouter" class="btn btn-default btn-success" />
+            </div>
+        </div>
+    </div>
+
+
+        }

@@ -1,0 +1,82 @@
+﻿@using System.Data;
+@{
+    ViewBag.Title = "AjouterManga";
+    Layout = "~/Views/Shared/_LayoutManga.cshtml";
+}
+
+@using (Html.BeginForm("AddManga", "Nouveau",
+                             new { ReturnUrl = ViewBag.ReturnUrl },
+                             FormMethod.Post, new { @class = "login-form" }))
+{
+    if (Model != null)
+    {
+        <div class="form-horizontal">
+            <h1>Ajouter un Manga</h1>
+
+            <div class="form-group">
+                <label class="control-label col-md-2" for="Dessinateur">Dessinateur</label>
+                <div class="col-md-10">
+                    <select id="Dessinateur" name="Dessinateur">
+                        @foreach (DataRow ligne in Model.SecondTable.Rows)
+                        {
+                            <option value="@(ligne["id_dessinateur"])">@(ligne["nom_dessinateur"])</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="Scenariste">Scenariste</label>
+                <div class="col-md-10">
+                    <select id="Scenariste" name="Scenariste">
+                        @foreach (DataRow ligne in Model.ThirdTable.Rows)
+                        {
+                            <option id="Scenariste" value="@(ligne["id_scenariste"])">@(ligne["nom_scenariste"])</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="prix">Prix</label>
+                <div class="col-md-10">
+                    <input type="text" id="prix" name="prix" class="form-control text-box single-line " />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="titre">Titre</label>
+                <div class="col-md-10">
+                    <input type="text" id="titre" name="titre" class="form-control text-box single-line " />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="date">Date de parution</label>
+                <div class="col-md-10">
+                    <input placeholder="YYYY-MM-DD" type="text" id="date" name="date" class="form-control text-box single-line " />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="couverture">Couverture</label>
+                <div class="col-md-10">
+                    <input type="text" id="couverture" name="couverture" class="form-control text-box single-line " />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="genre">Genre</label>
+                <div class="col-md-10">
+                    <select id="Genre" name="Genre">
+                        @foreach (DataRow ligne in Model.FirstTable.Rows)
+                        {
+                            <option id="Genre" value="@(ligne["id_genre"])">@(ligne["lib_genre"])</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offser-2 col-md-2">
+                    <input type="submit" value="Ajouter" class="btn btn-default btn-success" />
+                </div>
+            </div>
+        </div>
+            }
+
+            }

@@ -1,0 +1,14 @@
+﻿@model String
+@{
+    ViewBag.Title = "Video";
+    Layout = "~/Views/Shared/_LayoutManga.cshtml";
+}
+
+<h2>Video</h2>
+
+<video width="500" height="400" controls>
+    <source src="../videos/@Model" type="video/mp4">
+    <source src="movie.ogg" type="video/ogg">
+    Your browser does not support the video tag.
+</video>
+

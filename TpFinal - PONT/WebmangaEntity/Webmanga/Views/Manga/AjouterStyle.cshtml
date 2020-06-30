@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "AjouterStyle";
+    Layout = "~/Views/Shared/_LayoutManga.cshtml";
+}
+
+@using (Html.BeginForm("AddStyle", "Nouveau",
+                        new { ReturnUrl = ViewBag.ReturnUrl },
+                        FormMethod.Post, new { @class = "login-form" }))
+{
+    <div class="form-horizontal">
+        <h1>Ajouter un Style</h1>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="libele">Libelé</label>
+            <div class="col-md-10">
+                <input type="text" id="libele" name="libele" class="form-control text-box single-line " />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offser-2 col-md-2">
+                <input type="submit" value="Ajouter" class="btn btn-default btn-success" />
+            </div>
+        </div>
+    </div>
+
+
+        }

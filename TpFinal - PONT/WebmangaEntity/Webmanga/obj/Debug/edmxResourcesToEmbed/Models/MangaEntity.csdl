@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="mangasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="dessinateur">
+    <Key>
+      <PropertyRef Name="id_dessinateur" />
+    </Key>
+    <Property Name="id_dessinateur" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nom_dessinateur" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="prenom_dessinateur" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="manga" Relationship="Self.fk_manga_dessinateur" FromRole="dessinateur" ToRole="manga" />
+  </EntityType>
+  <EntityType Name="genre">
+    <Key>
+      <PropertyRef Name="id_genre" />
+    </Key>
+    <Property Name="id_genre" Type="Int32" Nullable="false" />
+    <Property Name="lib_genre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="manga" Relationship="Self.fk_manga_genre" FromRole="genre" ToRole="manga" />
+  </EntityType>
+  <EntityType Name="manga">
+    <Key>
+      <PropertyRef Name="id_manga" />
+    </Key>
+    <Property Name="id_manga" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_dessinateur" Type="Int32" Nullable="false" />
+    <Property Name="id_scenariste" Type="Int32" Nullable="false" />
+    <Property Name="prix" Type="Decimal" Nullable="false" />
+    <Property Name="titre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dateParution" Type="DateTime" Nullable="false" />
+    <Property Name="couverture" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_genre" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="dessinateur" Relationship="Self.fk_manga_dessinateur" FromRole="manga" ToRole="dessinateur" />
+    <NavigationProperty Name="genre" Relationship="Self.fk_manga_genre" FromRole="manga" ToRole="genre" />
+    <NavigationProperty Name="scenariste" Relationship="Self.fk_manga_scenariste" FromRole="manga" ToRole="scenariste" />
+  </EntityType>
+  <EntityType Name="scenariste">
+    <Key>
+      <PropertyRef Name="id_scenariste" />
+    </Key>
+    <Property Name="id_scenariste" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nom_scenariste" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="prenom_scenariste" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="manga" Relationship="Self.fk_manga_scenariste" FromRole="scenariste" ToRole="manga" />
+  </EntityType>
+  <Association Name="fk_manga_dessinateur">
+    <End Role="dessinateur" Type="Self.dessinateur" Multiplicity="1" />
+    <End Role="manga" Type="Self.manga" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dessinateur">
+        <PropertyRef Name="id_dessinateur" />
+      </Principal>
+      <Dependent Role="manga">
+        <PropertyRef Name="id_dessinateur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_manga_genre">
+    <End Role="genre" Type="Self.genre" Multiplicity="1" />
+    <End Role="manga" Type="Self.manga" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="genre">
+        <PropertyRef Name="id_genre" />
+      </Principal>
+      <Dependent Role="manga">
+        <PropertyRef Name="id_genre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_manga_scenariste">
+    <End Role="scenariste" Type="Self.scenariste" Multiplicity="1" />
+    <End Role="manga" Type="Self.manga" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="scenariste">
+        <PropertyRef Name="id_scenariste" />
+      </Principal>
+      <Dependent Role="manga">
+        <PropertyRef Name="id_scenariste" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="mangasEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="dessinateur" EntityType="Self.dessinateur" />
+    <EntitySet Name="genre" EntityType="Self.genre" />
+    <EntitySet Name="manga" EntityType="Self.manga" />
+    <EntitySet Name="scenariste" EntityType="Self.scenariste" />
+    <AssociationSet Name="fk_manga_dessinateur" Association="Self.fk_manga_dessinateur">
+      <End Role="dessinateur" EntitySet="dessinateur" />
+      <End Role="manga" EntitySet="manga" />
+    </AssociationSet>
+    <AssociationSet Name="fk_manga_genre" Association="Self.fk_manga_genre">
+      <End Role="genre" EntitySet="genre" />
+      <End Role="manga" EntitySet="manga" />
+    </AssociationSet>
+    <AssociationSet Name="fk_manga_scenariste" Association="Self.fk_manga_scenariste">
+      <End Role="scenariste" EntitySet="scenariste" />
+      <End Role="manga" EntitySet="manga" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

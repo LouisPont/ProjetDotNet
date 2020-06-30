@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="mangasModelStoreContainer" CdmEntityContainer="mangaEntities">
+    <EntitySetMapping Name="dessinateur">
+      <EntityTypeMapping TypeName="mangasModel.dessinateur">
+        <MappingFragment StoreEntitySet="dessinateur">
+          <ScalarProperty Name="id_dessinateur" ColumnName="id_dessinateur" />
+          <ScalarProperty Name="nom_dessinateur" ColumnName="nom_dessinateur" />
+          <ScalarProperty Name="prenom_dessinateur" ColumnName="prenom_dessinateur" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="genre">
+      <EntityTypeMapping TypeName="mangasModel.genre">
+        <MappingFragment StoreEntitySet="genre">
+          <ScalarProperty Name="id_genre" ColumnName="id_genre" />
+          <ScalarProperty Name="lib_genre" ColumnName="lib_genre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="manga">
+      <EntityTypeMapping TypeName="mangasModel.manga">
+        <MappingFragment StoreEntitySet="manga">
+          <ScalarProperty Name="id_manga" ColumnName="id_manga" />
+          <ScalarProperty Name="id_dessinateur" ColumnName="id_dessinateur" />
+          <ScalarProperty Name="id_scenariste" ColumnName="id_scenariste" />
+          <ScalarProperty Name="prix" ColumnName="prix" />
+          <ScalarProperty Name="titre" ColumnName="titre" />
+          <ScalarProperty Name="dateParution" ColumnName="dateParution" />
+          <ScalarProperty Name="couverture" ColumnName="couverture" />
+          <ScalarProperty Name="id_genre" ColumnName="id_genre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="scenariste">
+      <EntityTypeMapping TypeName="mangasModel.scenariste">
+        <MappingFragment StoreEntitySet="scenariste">
+          <ScalarProperty Name="id_scenariste" ColumnName="id_scenariste" />
+          <ScalarProperty Name="nom_scenariste" ColumnName="nom_scenariste" />
+          <ScalarProperty Name="prenom_scenariste" ColumnName="prenom_scenariste" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="utilisateur">
+      <EntityTypeMapping TypeName="mangasModel.utilisateur">
+        <MappingFragment StoreEntitySet="utilisateur">
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="Salt" ColumnName="Salt" />
+          <ScalarProperty Name="MotPasse" ColumnName="MotPasse" />
+          <ScalarProperty Name="PrenomUtil" ColumnName="PrenomUtil" />
+          <ScalarProperty Name="NomUtil" ColumnName="NomUtil" />
+          <ScalarProperty Name="NumUtil" ColumnName="NumUtil" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
